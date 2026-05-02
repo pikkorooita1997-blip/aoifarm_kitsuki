@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陽だまりみかん園 | Hidamari Mikan</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mikan: #E8722A;
+    --mikan-light: #F2A05C;
+    --mikan-pale: #FDF0E6;
+    --bark: #3D2B1F;
+    --leaf: #4A6741;
+    --leaf-light: #7A9B6E;
+    --cream: #FAF6F0;
+    --stone: #8B7355;
+    --white: #FFFDF9;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘Noto Sans JP’, sans-serif;
+background: var(–cream);
+color: var(–bark);
+overflow-x: hidden;
+}
+
+/* ===== NAV ===== */
+nav {
+position: fixed; top: 0; width: 100%; z-index: 100;
+background: rgba(250,246,240,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(61,43,31,0.08);
+display: flex; align-items: center; justify-content: space-between;
+padding: 0 40px; height: 64px;
+}
+.nav-logo {
+font-family: ‘Shippori Mincho’, serif;
+font-size: 1.2rem; font-weight: 800;
+color: var(–mikan); letter-spacing: 0.05em;
+}
+.nav-logo span { color: var(–bark); font-size: 0.75rem; display: block; font-weight: 400; letter-spacing: 0.1em; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+text-decoration: none; color: var(–bark);
+font-size: 0.85rem; font-weight: 300; letter-spacing: 0.08em;
+opacity: 0.7; transition: opacity 0.2s;
+cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { opacity: 1; color: var(–mikan); }
+.nav-order-btn {
+background: var(–mikan); color: white;
+border: none; padding: 10px 24px; border-radius: 2px;
+font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 0.82rem; letter-spacing: 0.1em;
+cursor: pointer; transition: background 0.2s;
+}
+.nav-order-btn:hover { background: var(–bark); }
+
+/* ===== PAGES ===== */
+.page { display: none; padding-top: 64px; }
+.page.active { display: block; }
+
+/* ===== HERO ===== */
+.hero {
+min-height: calc(100vh - 64px);
+display: grid; grid-template-columns: 1fr 1fr;
+position: relative; overflow: hidden;
+}
+.hero-left {
+display: flex; flex-direction: column;
+justify-content: center; padding: 80px 60px 80px 80px;
+position: relative;
+}
+.hero-eyebrow {
+font-size: 0.72rem; letter-spacing: 0.25em;
+color: var(–mikan); text-transform: uppercase; margin-bottom: 24px;
+}
+.hero-title {
+font-family: ‘Shippori Mincho’, serif;
+font-size: clamp(2.8rem, 5vw, 4.5rem);
+font-weight: 800; line-height: 1.15;
+margin-bottom: 8px; color: var(–bark);
+}
+.hero-title-en {
+font-family: ‘Playfair Display’, serif;
+font-style: italic; font-size: 1.1rem;
+color: var(–stone); margin-bottom: 32px;
+letter-spacing: 0.05em;
+}
+.hero-desc {
+font-size: 0.95rem; line-height: 1.9;
+color: var(–stone); max-width: 380px; margin-bottom: 48px;
+font-weight: 300;
+}
+.hero-cta-group { display: flex; gap: 16px; align-items: center; }
+.btn-primary {
+background: var(–mikan); color: white;
+padding: 16px 40px; border: none; border-radius: 2px;
+font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 0.9rem; letter-spacing: 0.12em;
+cursor: pointer; transition: all 0.3s;
+font-weight: 500;
+}
+.btn-primary:hover { background: var(–bark); transform: translateY(-1px); }
+.btn-text {
+background: none; border: none; color: var(–stone);
+font-size: 0.85rem; letter-spacing: 0.08em; cursor: pointer;
+text-decoration: underline; text-underline-offset: 4px;
+font-family: ‘Noto Sans JP’, sans-serif;
+transition: color 0.2s;
+}
+.btn-text:hover { color: var(–mikan); }
+
+.hero-right {
+position: relative; overflow: hidden;
+background: var(–mikan-pale);
+}
+.hero-img-placeholder {
+width: 100%; height: 100%;
+background: linear-gradient(135deg, #F5D4A0 0%, #E8935A 40%, #C45E25 100%);
+display: flex; flex-direction: column;
+align-items: center; justify-content: center;
+position: relative; overflow: hidden;
+}
+.hero-img-placeholder::before {
+content: ‘’;
+position: absolute; width: 300px; height: 300px;
+border-radius: 50%; background: rgba(255,255,255,0.12);
+top: -50px; right: -50px;
+}
+.hero-img-placeholder::after {
+content: ‘’;
+position: absolute; width: 200px; height: 200px;
+border-radius: 50%; background: rgba(255,255,255,0.08);
+bottom: 40px; left: -30px;
+}
+.mikan-icon-big { font-size: 7rem; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); }
+.hero-img-caption {
+color: rgba(255,255,255,0.85); font-size: 0.78rem;
+letter-spacing: 0.15em; margin-top: 16px; font-weight: 300;
+}
+.season-badge {
+position: absolute; top: 40px; left: 40px;
+background: white; padding: 12px 20px; border-radius: 2px;
+font-size: 0.75rem; letter-spacing: 0.1em;
+box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.season-badge strong { color: var(–mikan); display: block; font-size: 1.1rem; }
+
+/* ===== STORY ===== */
+.story-section {
+padding: 120px 80px;
+display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+align-items: center;
+}
+.section-label {
+font-size: 0.7rem; letter-spacing: 0.3em;
+color: var(–mikan); text-transform: uppercase; margin-bottom: 20px;
+}
+.section-title {
+font-family: ‘Shippori Mincho’, serif;
+font-size: clamp(1.8rem, 3vw, 2.8rem);
+font-weight: 800; line-height: 1.3; margin-bottom: 24px;
+}
+.section-body {
+font-size: 0.92rem; line-height: 2.1;
+color: var(–stone); font-weight: 300;
+}
+.story-photos {
+display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.photo-card {
+border-radius: 4px; overflow: hidden;
+aspect-ratio: 3/4; position: relative;
+}
+.photo-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+.photo-placeholder {
+width: 100%; height: 100%; min-height: 160px;
+display: flex; flex-direction: column;
+align-items: center; justify-content: center;
+font-size: 2.5rem; gap: 8px;
+color: white; font-size: 0.72rem; letter-spacing: 0.1em;
+}
+.photo-placeholder .photo-emoji { font-size: 3rem; }
+.p1 { background: linear-gradient(160deg, #6B4F3A, #A0724E); }
+.p2 { background: linear-gradient(160deg, #4A6741, #7A9B6E); }
+.p3 { background: linear-gradient(160deg, #C45E25, #E8935A); }
+
+/* ===== PRODUCTS ===== */
+.products-section { padding: 80px; background: var(–white); }
+.products-header { text-align: center; margin-bottom: 60px; }
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.product-card {
+border: 1px solid rgba(61,43,31,0.1);
+border-radius: 4px; overflow: hidden;
+transition: all 0.3s; cursor: pointer; background: white;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,43,31,0.12); }
+.product-card.selected { border-color: var(–mikan); border-width: 2px; }
+.product-img {
+height: 200px; display: flex; align-items: center; justify-content: center;
+font-size: 4rem; position: relative;
+}
+.product-badge {
+position: absolute; top: 12px; right: 12px;
+background: var(–mikan); color: white;
+font-size: 0.65rem; padding: 4px 10px; border-radius: 1px;
+letter-spacing: 0.1em;
+}
+.product-info { padding: 20px; }
+.product-name {
+font-family: ‘Shippori Mincho’, serif;
+font-size: 1.15rem; font-weight: 600; margin-bottom: 8px;
+}
+.product-desc { font-size: 0.8rem; color: var(–stone); line-height: 1.7; margin-bottom: 16px; }
+.product-price { color: var(–mikan); font-size: 1.3rem; font-weight: 500; }
+.product-price span { font-size: 0.75rem; color: var(–stone); }
+.product-select-btn {
+width: 100%; margin-top: 16px; padding: 10px;
+background: transparent; border: 1.5px solid var(–mikan);
+color: var(–mikan); border-radius: 2px; cursor: pointer;
+font-family: ‘Noto Sans JP’, sans-serif; font-size: 0.82rem;
+letter-spacing: 0.1em; transition: all 0.2s; font-weight: 500;
+}
+.product-select-btn:hover, .product-card.selected .product-select-btn {
+background: var(–mikan); color: white;
+}
+
+/* ===== ORDER FORM ===== */
+.order-section { padding: 80px; max-width: 760px; margin: 0 auto; }
+.order-header { text-align: center; margin-bottom: 60px; }
+.form-group { margin-bottom: 28px; }
+.form-label {
+display: block; font-size: 0.82rem; letter-spacing: 0.1em;
+margin-bottom: 10px; font-weight: 500; color: var(–bark);
+}
+.form-label .required {
+color: var(–mikan); font-size: 0.7rem; margin-left: 6px;
+}
+.form-input, .form-select, .form-textarea {
+width: 100%; padding: 14px 18px;
+border: 1.5px solid rgba(61,43,31,0.18);
+border-radius: 2px; background: white;
+font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 0.9rem; color: var(–bark);
+transition: border-color 0.2s; outline: none;
+-webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+border-color: var(–mikan);
+}
+.form-textarea { min-height: 100px; resize: vertical; line-height: 1.7; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.postal-group { display: flex; gap: 12px; align-items: flex-end; }
+.postal-group .form-input { flex: 1; }
+.postal-search-btn {
+white-space: nowrap; padding: 14px 20px;
+background: var(–leaf); color: white; border: none;
+border-radius: 2px; cursor: pointer;
+font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 0.82rem; transition: background 0.2s; letter-spacing: 0.05em;
+}
+.postal-search-btn:hover { background: var(–bark); }
+.address-found {
+margin-top: 8px; padding: 10px 14px;
+background: rgba(74,103,65,0.08); border-radius: 2px;
+font-size: 0.83rem; color: var(–leaf); display: none;
+}
+
+.order-summary {
+background: var(–mikan-pale); border-radius: 4px;
+padding: 24px; margin-bottom: 32px;
+}
+.order-summary-title {
+font-family: ‘Shippori Mincho’, serif;
+font-size: 1rem; margin-bottom: 16px; font-weight: 600;
+}
+.summary-row {
+display: flex; justify-content: space-between;
+font-size: 0.88rem; padding: 6px 0;
+border-bottom: 1px solid rgba(61,43,31,0.08);
+}
+.summary-row:last-child { border-bottom: none; font-weight: 600; font-size: 1rem; color: var(–mikan); }
+
+.submit-btn {
+width: 100%; padding: 20px;
+background: var(–mikan); color: white; border: none;
+border-radius: 2px; font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 1rem; letter-spacing: 0.15em; cursor: pointer;
+font-weight: 500; transition: all 0.3s;
+}
+.submit-btn:hover { background: var(–bark); }
+
+/* ===== GALLERY ===== */
+.gallery-section { padding: 80px; }
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: 200px 200px;
+gap: 12px; margin-top: 48px;
+}
+.gallery-item {
+border-radius: 4px; overflow: hidden; cursor: pointer;
+position: relative; transition: transform 0.3s;
+}
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+.gallery-placeholder {
+width: 100%; height: 100%; min-height: 200px;
+display: flex; align-items: center; justify-content: center;
+font-size: 3rem; color: white; flex-direction: column; gap: 8px;
+}
+.gallery-placeholder span { font-size: 0.7rem; letter-spacing: 0.1em; opacity: 0.8; }
+.g1 { background: linear-gradient(135deg, #C45E25, #E8935A); }
+.g2 { background: linear-gradient(135deg, #4A6741, #7A9B6E); }
+.g3 { background: linear-gradient(135deg, #8B7355, #C4A882); }
+.g4 { background: linear-gradient(135deg, #6B4F3A, #A0724E); }
+.g5 { background: linear-gradient(135deg, #E8722A, #F2A05C); }
+
+/* ===== ADMIN ===== */
+.admin-page { background: #F5F3F0; min-height: 100vh; }
+.admin-header {
+background: var(–bark); color: white;
+padding: 0 40px; height: 64px;
+display: flex; align-items: center; justify-content: space-between;
+}
+.admin-header h1 {
+font-family: ‘Shippori Mincho’, serif;
+font-size: 1.1rem; display: flex; align-items: center; gap: 12px;
+}
+.admin-nav { display: flex; gap: 4px; }
+.admin-nav-btn {
+padding: 8px 20px; border: none; border-radius: 2px;
+font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
+letter-spacing: 0.05em;
+}
+.admin-nav-btn.active { background: var(–mikan); color: white; }
+.admin-nav-btn:not(.active) { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+.admin-nav-btn:not(.active):hover { background: rgba(255,255,255,0.2); color: white; }
+
+.admin-content { padding: 32px 40px; }
+.admin-stats {
+display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px;
+}
+.stat-card {
+background: white; padding: 20px 24px; border-radius: 4px;
+border-left: 3px solid var(–mikan);
+}
+.stat-label { font-size: 0.75rem; color: var(–stone); letter-spacing: 0.1em; margin-bottom: 8px; }
+.stat-value { font-family: ‘Shippori Mincho’, serif; font-size: 2rem; font-weight: 800; color: var(–bark); }
+.stat-unit { font-size: 0.85rem; color: var(–stone); }
+
+.admin-panel { display: none; }
+.admin-panel.active { display: block; }
+
+.orders-table-wrap { background: white; border-radius: 4px; overflow: hidden; }
+.orders-filter {
+padding: 16px 24px; border-bottom: 1px solid rgba(61,43,31,0.08);
+display: flex; gap: 8px; align-items: center;
+}
+.filter-btn {
+padding: 6px 18px; border-radius: 20px; border: 1.5px solid rgba(61,43,31,0.2);
+background: transparent; font-family: ‘Noto Sans JP’, sans-serif;
+font-size: 0.78rem; cursor: pointer; transition: all 0.2s;
+}
+.filter-btn.active { background: var(–mikan); border-color: var(–mikan); color: white; }
+.orders-table { width: 100%; border-collapse: collapse; }
+.orders-table th {
+padding: 12px 16px; background: var(–cream);
+font-size: 0.75rem; letter-spacing: 0.1em; text-align: left;
+color: var(–stone); font-weight: 500;
+}
+.orders-table td { padding: 14px 16px; border-bottom: 1px solid rgba(61,43,31,0.06); font-size: 0.85rem; }
+.orders-table tr:last-child td { border-bottom: none; }
+.orders-table tr:hover td { background: rgba(232,114,42,0.03); }
+
+.status-badge {
+display: inline-block; padding: 4px 12px; border-radius: 20px;
+font-size: 0.72rem; letter-spacing: 0.08em; font-weight: 500;
+}
+.status-pending { background: rgba(232,114,42,0.12); color: var(–mikan); }
+.status-shipped { background: rgba(74,103,65,0.12); color: var(–leaf); }
+.ship-btn {
+padding: 6px 14px; border: 1.5px solid var(–leaf); background: transparent;
+color: var(–leaf); border-radius: 2px; cursor: pointer;
+font-family: ‘Noto Sans JP’, sans-serif; font-size: 0.75rem;
+transition: all 0.2s; font-weight: 500;
+}
+.ship-btn:hover { background: var(–leaf); color: white; }
+
+.customers-table-wrap { background: white; border-radius: 4px; overflow: hidden; }
+.customers-table { width: 100%; border-collapse: collapse; }
+.customers-table th {
+padding: 12px 16px; background: var(–cream);
+font-size: 0.75rem; letter-spacing: 0.1em; text-align: left;
+color: var(–stone); font-weight: 500;
+}
+.customers-table td { padding: 14px 16px; border-bottom: 1px solid rgba(61,43,31,0.06); font-size: 0.85rem; }
+.customers-table tr:hover td { background: rgba(232,114,42,0.03); }
+
+/* ===== THANKS ===== */
+.thanks-section {
+min-height: calc(100vh - 64px);
+display: flex; align-items: center; justify-content: center;
+flex-direction: column; text-align: center; padding: 40px;
+}
+.thanks-icon { font-size: 5rem; margin-bottom: 32px; }
+.thanks-title { font-family: ‘Shippori Mincho’, serif; font-size: 2rem; margin-bottom: 16px; }
+.thanks-body { color: var(–stone); line-height: 2; max-width: 400px; font-size: 0.9rem; }
+
+/* ===== TOAST ===== */
+.toast {
+position: fixed; bottom: 40px; right: 40px; z-index: 999;
+background: var(–bark); color: white;
+padding: 14px 24px; border-radius: 4px;
+font-size: 0.85rem; display: none; letter-spacing: 0.05em;
+box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+animation: toastIn 0.3s ease;
+}
+@keyframes toastIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ===== DIVIDER ===== */
+.divider { height: 1px; background: rgba(61,43,31,0.08); margin: 0 80px; }
+
+@media (max-width: 768px) {
+nav { padding: 0 20px; }
+.nav-links { display: none; }
+.hero { grid-template-columns: 1fr; }
+.hero-right { height: 260px; }
+.hero-left { padding: 60px 24px 40px; }
+.story-section { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+.products-section { padding: 60px 24px; }
+.products-grid { grid-template-columns: 1fr; }
+.order-section { padding: 60px 24px; }
+.gallery-section { padding: 60px 24px; }
+.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+.gallery-item:first-child { grid-column: span 2; }
+.form-row { grid-template-columns: 1fr; }
+.admin-content { padding: 20px; }
+.admin-stats { grid-template-columns: 1fr 1fr; }
+.admin-header { padding: 0 20px; }
+.divider { margin: 0 24px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">
+    陽だまりみかん園
+    <span>HIDAMARI MIKAN</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active" id="nav-home">あつらえ</a>
+    <a onclick="showPage('story')" id="nav-story">物語</a>
+    <a onclick="showPage('gallery')" id="nav-gallery">ギャラリー</a>
+    <a onclick="showPage('order')" id="nav-order">ご注文</a>
+    <a onclick="showPage('admin')" id="nav-admin" style="color:var(--stone);opacity:0.5">🔧管理</a>
+  </div>
+  <button class="nav-order-btn" onclick="showPage('order')">今すぐ注文</button>
+</nav>
+
+<!-- ========== HOME PAGE ========== -->
+
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Wakayama, Japan — Since 1962</div>
+      <h1 class="hero-title">木から摘んだ<br>太陽の味</h1>
+      <div class="hero-title-en">Sun-kissed Mikan, straight from the grove</div>
+      <p class="hero-desc">和歌山の陽だまりで、三代にわたり丹精込めて育てたみかん。手数料なし・産地直送で、畑の温もりをそのままお届けします。</p>
+      <div class="hero-cta-group">
+        <button class="btn-primary" onclick="showPage('order')">ご注文はこちら</button>
+        <button class="btn-text" onclick="showPage('story')">農家の物語を読む →</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-placeholder">
+        <div class="mikan-icon-big">🍊</div>
+        <div class="hero-img-caption">WAKAYAMA GROVE</div>
+      </div>
+      <div class="season-badge">
+        <strong>11月〜2月</strong>
+        収穫・出荷シーズン
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRODUCTS TEASER -->
+
+  <section class="products-section">
+    <div class="products-header">
+      <div class="section-label">Products</div>
+      <h2 class="section-title">今季のラインナップ</h2>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" onclick="selectProduct(this, 'standard')">
+        <div class="product-img" style="background:linear-gradient(135deg,#FDF0E6,#F5C98A)">🍊
+          <span class="product-badge">定番</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">和歌山みかん 標準品</div>
+          <div class="product-desc">甘みと酸味のバランスが絶妙な定番みかん。毎日のおやつに最適です。</div>
+          <div class="product-price">¥2,800 <span>/ 5kg箱</span></div>
+          <button class="product-select-btn">この商品を選ぶ</button>
+        </div>
+      </div>
+      <div class="product-card" onclick="selectProduct(this, 'premium')">
+        <div class="product-img" style="background:linear-gradient(135deg,#F5D4A0,#E8935A)">🍊
+          <span class="product-badge" style="background:var(--bark)">特選</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">特選 糖度13度以上</div>
+          <div class="product-desc">厳選した高糖度みかんのみをお届け。贈答用にも喜ばれる逸品。</div>
+          <div class="product-price">¥4,500 <span>/ 5kg箱</span></div>
+          <button class="product-select-btn">この商品を選ぶ</button>
+        </div>
+      </div>
+      <div class="product-card" onclick="selectProduct(this, 'gift')">
+        <div class="product-img" style="background:linear-gradient(135deg,#E8935A,#C45E25)">🎁
+          <span class="product-badge" style="background:var(--leaf)">ギフト</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">ギフトセット（3種詰合せ）</div>
+          <div class="product-desc">極早生・早生・普通種を詰め合わせた贈り物専用セット。化粧箱付き。</div>
+          <div class="product-price">¥6,200 <span>/ セット</span></div>
+          <button class="product-select-btn">この商品を選ぶ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== STORY PAGE ========== -->
+
+<div class="page" id="page-story">
+  <section class="story-section">
+    <div>
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">三代続く、<br>陽だまりの農園</h2>
+      <p class="section-body" style="margin-bottom:24px">
+        昭和37年、祖父が和歌山の小さな山の斜面にみかんの木を植えたのが始まりです。南向きの急斜面は太陽をたっぷり浴び、昼と夜の寒暖差がみかんの糖度を高めてくれます。
+      </p>
+      <p class="section-body" style="margin-bottom:24px">
+        父の代で有機農法に転換し、農薬を最小限に。土の声を聞きながら育てたみかんは、皮まで安心して食べられます。
+      </p>
+      <p class="section-body">
+        私たちは手数料を取る販売サイトを通さず、直接お客様へお届けすることにしました。間にある余白をなくせば、畑の温度がそのまま届くから。
+      </p>
+    </div>
+    <div class="story-photos">
+      <div class="photo-card">
+        <div class="photo-placeholder p1">
+          <div class="photo-emoji">🏡</div>
+          <span>みかんハウス</span>
+        </div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder p2">
+          <div class="photo-emoji">🌿</div>
+          <span>園内の様子</span>
+        </div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder p3">
+          <div class="photo-emoji">👨‍🌾</div>
+          <span>収穫の日</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <div style="text-align:center; padding:60px 40px">
+    <button class="btn-primary" onclick="showPage('order')">みかんを注文する</button>
+  </div>
+</div>
+
+<!-- ========== GALLERY PAGE ========== -->
+
+<div class="page" id="page-gallery">
+  <section class="gallery-section">
+    <div>
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">農園からの便り</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-placeholder g1">
+          <span>🍊</span>
+          <span>収穫風景</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder g2">
+          <span>🌳</span>
+          <span>みかんの木</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder g3">
+          <span>🏔️</span>
+          <span>山の農園</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder g4">
+          <span>📦</span>
+          <span>出荷準備</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder g5">
+          <span>☀️</span>
+          <span>陽だまりの朝</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <p style="color:var(--stone);font-size:0.85rem;margin-bottom:16px">📸 撮り溜めた写真はここに追加していけます</p>
+      <button class="btn-primary" onclick="showPage('order')">注文ページへ</button>
+    </div>
+  </section>
+</div>
+
+<!-- ========== ORDER PAGE ========== -->
+
+<div class="page" id="page-order">
+  <section class="order-section">
+    <div class="order-header">
+      <div class="section-label">Order Form</div>
+      <h2 class="section-title">ご注文フォーム</h2>
+      <p style="color:var(--stone);font-size:0.85rem;margin-top:12px">手数料なし・産地直送でお届けします</p>
+    </div>
+
+```
+<!-- 商品選択 -->
+<div class="form-group">
+  <label class="form-label">商品を選んでください <span class="required">必須</span></label>
+  <select class="form-select" id="order-product">
+    <option value="">— 商品を選択 —</option>
+    <option value="standard">和歌山みかん 標準品 5kg ¥2,800</option>
+    <option value="premium">特選 糖度13度以上 5kg ¥4,500</option>
+    <option value="gift">ギフトセット（3種詰合せ） ¥6,200</option>
+  </select>
+</div>
+
+<!-- 数量 -->
+<div class="form-group">
+  <label class="form-label">箱数 <span class="required">必須</span></label>
+  <select class="form-select" id="order-qty" onchange="updateSummary()">
+    <option value="1">1箱</option>
+    <option value="2">2箱</option>
+    <option value="3">3箱</option>
+    <option value="5">5箱</option>
+    <option value="10">10箱</option>
+  </select>
+</div>
+
+<!-- 配達日 -->
+<div class="form-group">
+  <label class="form-label">ご希望お届け日 <span class="required">必須</span></label>
+  <input type="date" class="form-input" id="order-date">
+</div>
+
+<!-- 注文概要 -->
+<div class="order-summary" id="order-summary" style="display:none">
+  <div class="order-summary-title">🍊 ご注文内容</div>
+  <div class="summary-row"><span id="sum-product">—</span><span id="sum-price">—</span></div>
+  <div class="summary-row"><span>数量</span><span id="sum-qty">—</span></div>
+  <div class="summary-row"><span>合計金額</span><span id="sum-total">—</span></div>
+</div>
+
+<!-- お名前 -->
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label">お名前（姓）<span class="required">必須</span></label>
+    <input type="text" class="form-input" placeholder="山田">
+  </div>
+  <div class="form-group">
+    <label class="form-label">お名前（名）<span class="required">必須</span></label>
+    <input type="text" class="form-input" placeholder="太郎">
+  </div>
+</div>
+
+<!-- 電話 -->
+<div class="form-group">
+  <label class="form-label">電話番号 <span class="required">必須</span></label>
+  <input type="tel" class="form-input" placeholder="090-0000-0000">
+</div>
+
+<!-- メール -->
+<div class="form-group">
+  <label class="form-label">メールアドレス</label>
+  <input type="email" class="form-input" placeholder="example@email.com">
+</div>
+
+<!-- 郵便番号 -->
+<div class="form-group">
+  <label class="form-label">郵便番号 <span class="required">必須</span></label>
+  <div class="postal-group">
+    <input type="text" class="form-input" id="postal-input" placeholder="000-0000" maxlength="8" oninput="formatPostal(this)">
+    <button class="postal-search-btn" onclick="searchAddress()">住所を検索</button>
+  </div>
+  <div class="address-found" id="address-found">✓ 住所が見つかりました</div>
+</div>
+
+<!-- 住所 -->
+<div class="form-group">
+  <label class="form-label">都道府県・市区町村 <span class="required">必須</span></label>
+  <input type="text" class="form-input" id="addr1" placeholder="和歌山県海南市">
+</div>
+<div class="form-group">
+  <label class="form-label">番地・建物名</label>
+  <input type="text" class="form-input" id="addr2" placeholder="○○町1-2-3　△△マンション101">
+</div>
+
+<!-- 備考 -->
+<div class="form-group">
+  <label class="form-label">備考・メッセージ</label>
+  <textarea class="form-textarea" placeholder="例：不在の場合は宅配ボックスへ / ギフト用包装希望 など"></textarea>
+</div>
+
+<button class="submit-btn" onclick="submitOrder()">注文を送信する →</button>
+```
+
+  </section>
+</div>
+
+<!-- ========== THANKS PAGE ========== -->
+
+<div class="page" id="page-thanks">
+  <section class="thanks-section">
+    <div class="thanks-icon">🍊</div>
+    <h2 class="thanks-title">ご注文ありがとうございます</h2>
+    <p class="thanks-body">ご注文を受け付けました。<br>収穫・梱包が整い次第、丁寧にお届けします。<br><br>ご不明な点はInstagramのDMへどうぞ。</p>
+    <br><br>
+    <button class="btn-primary" onclick="showPage('home')">トップへ戻る</button>
+  </section>
+</div>
+
+<!-- ========== ADMIN PAGE ========== -->
+
+<div class="page" id="page-admin">
+  <div class="admin-page">
+    <div class="admin-header">
+      <h1>🍊 陽だまりみかん園 — 管理画面</h1>
+      <div class="admin-nav">
+        <button class="admin-nav-btn active" onclick="showAdminPanel('orders', this)">受注管理</button>
+        <button class="admin-nav-btn" onclick="showAdminPanel('customers', this)">顧客名簿</button>
+        <button class="admin-nav-btn" onclick="showAdminPanel('gallery-admin', this)">写真管理</button>
+      </div>
+    </div>
+
+```
+<div class="admin-content">
+
+  <!-- STATS -->
+  <div class="admin-stats">
+    <div class="stat-card">
+      <div class="stat-label">未出荷</div>
+      <div class="stat-value">8 <span class="stat-unit">件</span></div>
+    </div>
+    <div class="stat-card" style="border-color:var(--leaf)">
+      <div class="stat-label">出荷済み（今月）</div>
+      <div class="stat-value">24 <span class="stat-unit">件</span></div>
+    </div>
+    <div class="stat-card" style="border-color:var(--stone)">
+      <div class="stat-label">顧客数</div>
+      <div class="stat-value">61 <span class="stat-unit">名</span></div>
+    </div>
+    <div class="stat-card" style="border-color:var(--bark)">
+      <div class="stat-label">今月売上</div>
+      <div class="stat-value">¥<span style="font-size:1.5rem">188,400</span></div>
+    </div>
+  </div>
+
+  <!-- ORDERS PANEL -->
+  <div class="admin-panel active" id="panel-orders">
+    <div class="orders-table-wrap">
+      <div class="orders-filter">
+        <button class="filter-btn active" onclick="filterOrders('all', this)">すべて</button>
+        <button class="filter-btn" onclick="filterOrders('pending', this)">未出荷</button>
+        <button class="filter-btn" onclick="filterOrders('shipped', this)">出荷済み</button>
+      </div>
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>注文日</th>
+            <th>お名前</th>
+            <th>商品</th>
+            <th>数量</th>
+            <th>金額</th>
+            <th>お届け日</th>
+            <th>ステータス</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="orders-tbody">
+          <!-- JSで生成 -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CUSTOMERS PANEL -->
+  <div class="admin-panel" id="panel-customers">
+    <div class="customers-table-wrap">
+      <table class="customers-table">
+        <thead>
+          <tr>
+            <th>お名前</th>
+            <th>電話番号</th>
+            <th>住所</th>
+            <th>累計注文</th>
+            <th>累計金額</th>
+            <th>最終注文日</th>
+          </tr>
+        </thead>
+        <tbody id="customers-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GALLERY ADMIN PANEL -->
+  <div class="admin-panel" id="panel-gallery-admin">
+    <div style="background:white;border-radius:4px;padding:32px">
+      <h3 style="font-family:'Shippori Mincho',serif;font-size:1.1rem;margin-bottom:24px">📸 写真管理</h3>
+      <div style="border:2px dashed rgba(61,43,31,0.2);border-radius:4px;padding:48px;text-align:center;cursor:pointer;transition:all 0.2s" onclick="showToast('写真アップロード機能（本番実装で有効化）')">
+        <div style="font-size:3rem;margin-bottom:16px">📁</div>
+        <p style="color:var(--stone);font-size:0.9rem">クリックまたはドラッグ＆ドロップで写真を追加</p>
+        <p style="color:var(--stone);font-size:0.75rem;margin-top:8px">JPG / PNG / HEIC 対応</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px">
+        <div style="aspect-ratio:1;background:linear-gradient(135deg,#C45E25,#E8935A);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:white;cursor:pointer" onclick="showToast('拡大表示・削除メニュー（本番実装で有効化）')">🍊</div>
+        <div style="aspect-ratio:1;background:linear-gradient(135deg,#4A6741,#7A9B6E);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:white;cursor:pointer">🌿</div>
+        <div style="aspect-ratio:1;background:linear-gradient(135deg,#6B4F3A,#A0724E);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:white;cursor:pointer">🏡</div>
+        <div style="aspect-ratio:1;background:rgba(61,43,31,0.05);border-radius:4px;border:2px dashed rgba(61,43,31,0.15);display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(61,43,31,0.3);cursor:pointer">＋</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+</div>
+
+<script>
+// ===== SAMPLE DATA =====
+const orders = [
+  { date: '2025-11-28', name: '山田 花子', product: '特選 糖度13度以上', qty: 2, amount: 9000, deliveryDate: '2025-12-03', status: 'pending' },
+  { date: '2025-11-27', name: '田中 一郎', product: '和歌山みかん 標準品', qty: 3, amount: 8400, deliveryDate: '2025-12-01', status: 'pending' },
+  { date: '2025-11-26', name: '鈴木 めぐみ', product: 'ギフトセット', qty: 1, amount: 6200, deliveryDate: '2025-12-05', status: 'pending' },
+  { date: '2025-11-25', name: '佐藤 健', product: '和歌山みかん 標準品', qty: 1, amount: 2800, deliveryDate: '2025-11-30', status: 'shipped' },
+  { date: '2025-11-24', name: '高橋 さくら', product: '特選 糖度13度以上', qty: 1, amount: 4500, deliveryDate: '2025-11-28', status: 'shipped' },
+  { date: '2025-11-23', name: '渡辺 浩二', product: 'ギフトセット', qty: 2, amount: 12400, deliveryDate: '2025-11-27', status: 'shipped' },
+];
+
+const customers = [
+  { name: '山田 花子', tel: '090-1234-5678', address: '東京都新宿区西新宿1-1-1', orders: 4, total: 24800, lastOrder: '2025-11-28' },
+  { name: '田中 一郎', tel: '080-2345-6789', address: '大阪府大阪市中央区本町2-3-4', orders: 2, total: 14200, lastOrder: '2025-11-27' },
+  { name: '鈴木 めぐみ', tel: '070-3456-7890', address: '神奈川県横浜市中区山下町5-6', orders: 3, total: 18600, lastOrder: '2025-11-26' },
+  { name: '佐藤 健', tel: '090-4567-8901', address: '愛知県名古屋市中区栄3-7-8', orders: 1, total: 2800, lastOrder: '2025-11-25' },
+  { name: '高橋 さくら', tel: '080-5678-9012', address: '北海道札幌市中央区大通西9-1', orders: 5, total: 31000, lastOrder: '2025-11-24' },
+];
+
+// ===== PAGE NAV =====
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ===== ADMIN PANEL =====
+function showAdminPanel(name, btn) {
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ===== FILTER =====
+let currentFilter = 'all';
+function filterOrders(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderOrders();
+}
+
+// ===== RENDER ORDERS =====
+function renderOrders() {
+  const tbody = document.getElementById('orders-tbody');
+  const filtered = currentFilter === 'all' ? orders : orders.filter(o => o.status === currentFilter);
+  tbody.innerHTML = filtered.map((o, i) => `
+    <tr>
+      <td>${o.date}</td>
+      <td><strong>${o.name}</strong></td>
+      <td>${o.product}</td>
+      <td>${o.qty}箱</td>
+      <td>¥${o.amount.toLocaleString()}</td>
+      <td>${o.deliveryDate}</td>
+      <td><span class="status-badge status-${o.status}">${o.status === 'pending' ? '未出荷' : '出荷済み'}</span></td>
+      <td>${o.status === 'pending' ? `<button class="ship-btn" onclick="markShipped(${orders.indexOf(o)})">出荷済みにする</button>` : '—'}</td>
+    </tr>
+  `).join('');
+}
+
+function markShipped(idx) {
+  orders[idx].status = 'shipped';
+  renderOrders();
+  showToast('✓ 出荷済みにしました');
+}
+
+// ===== RENDER CUSTOMERS =====
+function renderCustomers() {
+  const tbody = document.getElementById('customers-tbody');
+  tbody.innerHTML = customers.map(c => `
+    <tr>
+      <td><strong>${c.name}</strong></td>
+      <td>${c.tel}</td>
+      <td>${c.address}</td>
+      <td>${c.orders}回</td>
+      <td>¥${c.total.toLocaleString()}</td>
+      <td>${c.lastOrder}</td>
+    </tr>
+  `).join('');
+}
+
+// ===== PRODUCT SELECT =====
+function selectProduct(card, type) {
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const select = document.getElementById('order-product');
+  if (select) {
+    if (type === 'standard') select.value = 'standard';
+    else if (type === 'premium') select.value = 'premium';
+    else select.value = 'gift';
+    updateSummary();
+  }
+  showPage('order');
+}
+
+// ===== ORDER SUMMARY =====
+const prices = { standard: 2800, premium: 4500, gift: 6200 };
+const names = { standard: '和歌山みかん 標準品 5kg', premium: '特選 糖度13度以上 5kg', gift: 'ギフトセット（3種詰合せ）' };
+
+function updateSummary() {
+  const product = document.getElementById('order-product').value;
+  const qty = parseInt(document.getElementById('order-qty').value);
+  const summary = document.getElementById('order-summary');
+  if (!product) { summary.style.display = 'none'; return; }
+  const price = prices[product];
+  const total = price * qty;
+  document.getElementById('sum-product').textContent = names[product];
+  document.getElementById('sum-price').textContent = `¥${price.toLocaleString()}`;
+  document.getElementById('sum-qty').textContent = `${qty}箱`;
+  document.getElementById('sum-total').textContent = `¥${total.toLocaleString()}`;
+  summary.style.display = 'block';
+}
+
+document.getElementById('order-product').addEventListener('change', updateSummary);
+
+// ===== POSTAL =====
+function formatPostal(input) {
+  let v = input.value.replace(/[^0-9]/g, '');
+  if (v.length > 3) v = v.slice(0, 3) + '-' + v.slice(3, 7);
+  input.value = v;
+}
+
+async function searchAddress() {
+  const postalRaw = document.getElementById('postal-input').value.replace('-', '');
+  if (postalRaw.length !== 7) { showToast('郵便番号を7桁で入力してください'); return; }
+  try {
+    const res = await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalRaw}`);
+    const data = await res.json();
+    if (data.results && data.results[0]) {
+      const r = data.results[0];
+      const addr = r.address1 + r.address2 + r.address3;
+      document.getElementById('addr1').value = addr;
+      document.getElementById('address-found').style.display = 'block';
+      document.getElementById('address-found').textContent = `✓ ${addr}`;
+      showToast('✓ 住所を入力しました');
+    } else {
+      showToast('住所が見つかりませんでした');
+    }
+  } catch(e) {
+    // フォールバック: デモ用サンプル住所
+    document.getElementById('addr1').value = '和歌山県海南市大野中';
+    document.getElementById('address-found').style.display = 'block';
+    document.getElementById('address-found').textContent = '✓ 和歌山県海南市大野中（デモ）';
+    showToast('✓ 住所を入力しました（デモ）');
+  }
+}
+
+// ===== SUBMIT =====
+function submitOrder() {
+  const product = document.getElementById('order-product').value;
+  const date = document.getElementById('order-date').value;
+  const addr1 = document.getElementById('addr1').value;
+  if (!product || !date || !addr1) {
+    showToast('必須項目を入力してください');
+    return;
+  }
+  showPage('thanks');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+
+// ===== INIT =====
+renderOrders();
+renderCustomers();
+
+// 今日の日付をデフォルトに（+3日）
+const today = new Date(); today.setDate(today.getDate() + 3);
+document.getElementById('order-date').value = today.toISOString().split('T')[0];
+</script>
+
+</body>
+</html>
